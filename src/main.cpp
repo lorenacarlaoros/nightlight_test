@@ -8,17 +8,16 @@ int sensorValue = 0;
 
 void setup()
 {
-  //
   pinMode(A0, INPUT);
+  pinMode(WIO_BUZZER, OUTPUT);
+  pinMode(D1, OUTPUT);
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   Wire.begin();
 
   tft.begin();
   tft.setRotation(3);
   spr.createSprite(TFT_HEIGHT, TFT_WIDTH);
-
-  pinMode(D1, OUTPUT);
 }
 
 void loop()
@@ -35,6 +34,7 @@ void loop()
   int t = 10.0;
   int h = 5.0;
 
+  // Design WIO display
   spr.fillSprite(TFT_WHITE);
   spr.fillRect(0, 0, 320, 50, TFT_DARKGREEN);
   spr.setTextColor(TFT_WHITE);
@@ -73,13 +73,14 @@ void loop()
     analogWrite(WIO_BUZZER, 150);
     delay(1000);
     analogWrite(WIO_BUZZER, 0);
-    digitalWrite(D1, HIGH);
-  }
-  else
-  {
-    digitalWrite(D1, LOW);
+    delay(1000);
   }
 
-  spr.pushSprite(0, 0);
+  spr.pushSprite(0, 0); // Push to LCD
+
+  // Water pump
+  digitalWrite(D1, HIGH);
   delay(10000);
+  digitalWrite(D1, LOW);
+  delay(1000);
 }
