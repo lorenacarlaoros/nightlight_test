@@ -31,8 +31,10 @@ void loop()
   sensorValue = analogRead(sensorPin);
   sensorValue = map(sensorValue, 560, 450, 0, 100);
 
+  String cmdMessage = "Soil Moisture: " + sensorValue;
   Serial.print("Soil Moisture: ");
-  Serial.println(sensorValue);
+  Serial.print(sensorValue);
+  Serial.print("%");
 
   int t = 10.0;
   int h = 5.0;
