@@ -1,4 +1,4 @@
-#include "Wire.h"
+#include <Wire.h>
 #include <TFT_eSPI.h>
 
 #define DHTPIN 2
@@ -7,8 +7,8 @@
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
-int sensorPin = A0;  // Define variable to store sensor pin
-int sensorValue = 0; // Define variable tos tore sensor value
+int sensorPin = A0;
+int sensorValue = 0;
 
 void setup()
 {
@@ -28,8 +28,8 @@ void setup()
 void loop()
 {
   // Display soil moisture
-  sensorValue = analogRead(sensorPin);              // Save sensor values
-  sensorValue = map(sensorValue, 560, 450, 0, 100); // Map sensor values to 0-100 range
+  sensorValue = analogRead(sensorPin);
+  sensorValue = map(sensorValue, 560, 450, 0, 100);
 
   Serial.print("Soil Moisture: ");
   Serial.println(sensorValue);
