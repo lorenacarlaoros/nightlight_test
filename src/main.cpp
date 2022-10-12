@@ -32,7 +32,7 @@ void loop()
   sensorValue = map(sensorValue, 560, 450, 0, 100);
 
   String cmdMessage = "Soil Moisture: " + sensorValue;
-  Serial.print("Soil Moisture: ");
+  Serial.println("Soil Moisture: ");
   Serial.print(sensorValue);
   Serial.print("%");
 
