@@ -4,7 +4,7 @@
 #include <time.h>
 #include "samd/NTPClientAz.h"
 #include <sys/time.h>
-#include <DNSServer.h>
+#include <sys/unistd.h>
 
 static void initTime()
 {
@@ -39,6 +39,4 @@ static void initTime()
     struct timeval tv;
     tv.tv_sec = epochTime;
     tv.tv_usec = 0;
-
-    settimeofday(&tv, NULL);
 }
