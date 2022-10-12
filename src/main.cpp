@@ -1,13 +1,9 @@
 #include <Wire.h>
 #include <TFT_eSPI.h>
 
-#define DHTPIN 2
-#define DHTTYPE DHT11
-
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
-int sensorPin = A0;
 int sensorValue = 0;
 
 void setup()
@@ -28,7 +24,7 @@ void setup()
 void loop()
 {
   // Display soil moisture
-  sensorValue = analogRead(sensorPin);
+  sensorValue = analogRead(A0);
   sensorValue = map(sensorValue, 560, 450, 0, 100);
 
   String cmdMessage = "Soil Moisture: " + sensorValue;
@@ -71,7 +67,7 @@ void loop()
 
   if (sensorValue < 20)
   {
-    spr.setTextSize(3);
+    spr.setTextSize(2);
     spr.fillSprite(TFT_RED);
     spr.drawString("The plant is dying!", 10, 100);
     analogWrite(WIO_BUZZER, 150);
